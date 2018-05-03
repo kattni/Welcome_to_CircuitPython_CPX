@@ -51,7 +51,7 @@ peak = 0
 while True:
     mic.record(samples, len(samples))
     magnitude = normalized_rms(samples)
-    print(magnitude)
+    print((magnitude),)
 
     c = log_scale(constrain(magnitude, input_floor, input_ceiling),
                   input_floor, input_ceiling, 0, NUM_PIXELS)
