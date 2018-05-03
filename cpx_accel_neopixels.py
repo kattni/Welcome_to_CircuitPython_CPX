@@ -13,7 +13,7 @@ while True:
         G = 0
         B = 0
         x, y, z = cpx.acceleration
-        print(x, y, z)
+        print((x, y, z))
         if x:
             R = R + abs(int(x))
         if y:
