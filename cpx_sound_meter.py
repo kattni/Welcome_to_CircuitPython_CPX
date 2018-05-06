@@ -46,8 +46,9 @@ input_floor = normalized_rms(samples) + 10
 # Lower number means more sensitive - more LEDs will light up with less sound.
 sensitivity = 500
 input_ceiling = input_floor + sensitivity
-
 peak = 0
+tip = 0
+decay = 0
 while True:
     mic.record(samples, len(samples))
     magnitude = normalized_rms(samples)
@@ -66,4 +67,16 @@ while True:
             peak = peak - 1
         if peak > 0:
             pixels[int(peak)] = PEAK_COLOR
+        if  peak>tip:
+            tip = peak
+            decay = 50
+        else:
+            decay -= 1
+            print(decay)
+            if decay==0:
+                tip-=1
+                decay=20
+
+    pixels[int(tip)] = PEAK_COLOR
     pixels.show()
+
